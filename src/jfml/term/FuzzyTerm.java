@@ -257,6 +257,17 @@ public abstract class FuzzyTerm extends Term{
 		
 		return d;
 	}
+	
+	
+	/**
+	 * @author Autilia Vitiello
+	 * 
+	 * @return the value for the type according to the static variables
+	 */
+	public int getType(){
+		return this.type;
+	}
+	
 
 	/**
 	 * Gets the name of the fuzzy term

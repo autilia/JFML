@@ -924,4 +924,7 @@ public class FuzzyTermType extends FuzzyTerm{
 		
 		return t;
 	}
+	
+	
+	
 }
