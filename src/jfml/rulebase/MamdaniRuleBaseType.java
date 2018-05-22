@@ -23,6 +23,9 @@
  **************************************************************/
 package jfml.rulebase;
 
+import jfml.rule.FuzzyRuleType;
+import jfml.rule.Rule;
+
 /**
  * Java class for representing Mamdani rule base fuzzy systems
  * @author sotillo19
@@ -55,6 +58,23 @@ public class MamdaniRuleBaseType extends RuleBaseType {
 	 */
 	public MamdaniRuleBaseType(String name, String activation, String and, String or, int type) {
 		super(name, activation, and, or, type);
+	}
+	
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public FuzzySystemRuleBase copy() {
+		
+		MamdaniRuleBaseType rulebase=new MamdaniRuleBaseType(this.name, this.activationMethod, this.andMethod, this.orMethod, this.ruleBaseSystemType);
+	    rulebase.setNetworkAddress(this.networkAddress);
+	    
+	  //setting terms
+	  		for(Rule t : getRules())
+	  			rulebase.addRule((FuzzyRuleType) t.copy());
+	  		
+	  	return rulebase;
+	
 	}
 
 }

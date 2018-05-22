@@ -199,5 +199,19 @@ public class ConsequentType {
     public void setElse(ConsequentClausesType value) {
         this._else = value;
     }
+    
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+    public ConsequentType copy(){
+    	ConsequentType c=new ConsequentType();
+    	if(this.getThen()!=null)
+    		c.setThen(this.getThen().copy());
+    	if(this.getElse()!=null)
+    		c.setElse(this.getElse().copy());
+    	
+    	return c;
+    }
 
 }

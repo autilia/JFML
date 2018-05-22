@@ -130,5 +130,17 @@ public class AntecedentType {
     	if(c!=null)
     		clauses.add(c);
     }
+    
+    /**
+     * @author Autilia Vitiello
+     */
+    public AntecedentType copy(){
+    	AntecedentType a=new AntecedentType();
+    	
+    	for(ClauseType clause: this.getClauses())
+    		a.addClause(clause.copy());
+    	
+    	return a;
+    }
 
 }

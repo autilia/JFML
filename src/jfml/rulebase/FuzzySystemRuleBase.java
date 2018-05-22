@@ -269,5 +269,14 @@ public abstract class FuzzySystemRuleBase {
 	public abstract String toString();
 	
 	public abstract String getActivatedRules();
+	
+	/**
+	 * @author Autilia Vitiello
+	 * 
+	 * Returns a new instance of the rulebase
+	 * 
+	 * @return a new instance of the rulebase
+	 */
+	public abstract FuzzySystemRuleBase copy();
 
 }

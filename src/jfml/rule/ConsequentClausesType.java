@@ -118,4 +118,17 @@ public class ConsequentClausesType {
     	if(c!=null)
     		clauses.add(c);
     }
+    
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+    public ConsequentClausesType copy(){
+    	ConsequentClausesType c=new ConsequentClausesType();
+    	
+    	for(ClauseType clause: this.getClause())
+    		c.addClause(clause.copy());
+    	
+    	return c;
+    }
 }

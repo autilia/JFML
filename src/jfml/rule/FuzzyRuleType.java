@@ -475,5 +475,20 @@ public class FuzzyRuleType extends Rule{
 		}
 		return b;
 	}
+	
+	
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public Rule copy() {
+		FuzzyRuleType r=new FuzzyRuleType(this.name, this.connector, this.andMethod, this.orMethod, this.weight);
+		r.setNetworkAddress(this.networkAddress);
+		
+		r.setAntecedent(this.antecedent.copy());
+		r.setConsequent(this.consequent.copy());
+		
+		return r;
+	}
 
 }

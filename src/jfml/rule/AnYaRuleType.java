@@ -343,4 +343,17 @@ public class AnYaRuleType extends Rule{
 		return b;
 	}
 
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public Rule copy() {
+		AnYaRuleType r=new AnYaRuleType(this.name, this.weight);
+		r.setNetworkAddress(this.networkAddress);
+		
+		r.setAnYaAntecedent(this.anYaAntecedent.copy());
+		r.setConsequent(this.consequent.copy());
+		
+		return r;
+	}
 }

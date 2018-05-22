@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 
 import jfml.knowledgebase.variable.KnowledgeBaseVariable;
 import jfml.term.FuzzyTerm;
+import jfml.term.Term;
 
 
 /**
@@ -133,5 +134,15 @@ public class TskClauseType {
     public void setTerm(Object value) {
         this.term = value;
     }
+    
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+    public TskClauseType copy(){
+
+  		return new TskClauseType(((KnowledgeBaseVariable)this.variable).copy(), ((Term)this.term).copy());
+
+  	}
 
 }

@@ -181,4 +181,11 @@ public class TskConsequentType {
         this.tskElse = value;
     }
 
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+    public TskConsequentType copy(){
+    	return new TskConsequentType(this.tskThen.copy(), this.tskElse.copy());
+    }
 }

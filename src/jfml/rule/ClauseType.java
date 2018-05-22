@@ -413,7 +413,7 @@ public class ClauseType {
 	/**
 	 * @author Autilia Vitiello
 	 * 
-	 * @return
+	 * @return a new instance
 	 */
 	public ClauseType copy(){
 			ClauseType claus=new ClauseType(((KnowledgeBaseVariable)this.variable).copy(), ((Term)this.term).copy());

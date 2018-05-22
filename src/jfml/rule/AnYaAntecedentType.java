@@ -110,4 +110,12 @@ public class AnYaAntecedentType {
 		return "";
     }
 
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+ public AnYaAntecedentType copy(){
+    	
+    	return new AnYaAntecedentType((AnYaDataCloudType)((AnYaDataCloudType) this.dataCloudName).copy());
+    }
 }

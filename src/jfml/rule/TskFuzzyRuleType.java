@@ -469,5 +469,20 @@ public class TskFuzzyRuleType extends Rule{
 		}
 		return b;
 	}
+	
+	
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public Rule copy() {
+		TskFuzzyRuleType r=new TskFuzzyRuleType(this.name, this.connector, this.andMethod, this.orMethod, this.weight);
+		r.setNetworkAddress(this.networkAddress);
+		
+		r.setAntecedent(this.antecedent.copy());
+		r.setTskConsequent(this.tskConsequent.copy());
+		
+		return r;
+	}
 
 }

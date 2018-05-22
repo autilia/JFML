@@ -117,4 +117,17 @@ public class TskConsequentClausesType {
     	if(c!=null)
     		tskClause.add(c);
     }
+    
+    /**
+     * @author Autilia Vitiello
+     * @return
+     */
+    public TskConsequentClausesType copy(){
+    	TskConsequentClausesType c=new TskConsequentClausesType();
+    	
+    	for(TskClauseType clause: this.getTskClause())
+    		c.addTskClause(clause.copy());
+    	
+    	return c;
+    }
 }

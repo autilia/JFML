@@ -414,4 +414,13 @@ public abstract class Rule {
 	public void setEvaluation(float evaluation) {
 		this.evaluation = evaluation;
 	}
+	
+	/**
+	 * @author Autilia Vitiello
+	 * 
+	 * Returns a new instance of the rule
+	 * 
+	 * @return a new instance of the rule
+	 */
+	public abstract Rule copy();
 }

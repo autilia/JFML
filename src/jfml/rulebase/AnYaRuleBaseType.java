@@ -43,6 +43,7 @@ import jfml.knowledgebase.variable.TsukamotoVariableType;
 import jfml.rule.AnYaRuleType;
 import jfml.rule.ClauseType;
 import jfml.rule.ConsequentClausesType;
+import jfml.rule.Rule;
 import jfml.rule.TskFuzzyRuleType;
 import jfml.term.FuzzyTerm;
 
@@ -314,6 +315,25 @@ public class AnYaRuleBaseType extends FuzzySystemRuleBase {
 		}
 			
 		return b;
+	}
+	
+	
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public FuzzySystemRuleBase copy() {
+		
+		AnYaRuleBaseType rulebase=new AnYaRuleBaseType(this.name);
+		rulebase.setRuleBaseSystemType(this.ruleBaseSystemType);
+	    rulebase.setNetworkAddress(this.networkAddress);
+	    
+	  //setting terms
+	  		for(Rule t : getAnYaRules())
+	  			rulebase.addAnYaRule((AnYaRuleType) t.copy());
+	  		
+	  	return rulebase;
+	
 	}
 
 }

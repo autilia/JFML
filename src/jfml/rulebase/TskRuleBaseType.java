@@ -39,6 +39,7 @@ import jfml.knowledgebase.variable.FuzzyVariableType;
 import jfml.knowledgebase.variable.TskVariableType;
 import jfml.rule.ClauseType;
 import jfml.rule.FuzzyRuleType;
+import jfml.rule.Rule;
 import jfml.rule.TskClauseType;
 import jfml.rule.TskConsequentClausesType;
 import jfml.rule.TskFuzzyRuleType;
@@ -387,6 +388,23 @@ public class TskRuleBaseType extends FuzzySystemRuleBase {
 		}
 			
 		return b;
+	}
+	
+	/**
+	 * @author Autilia Vitiello
+	 */
+	@Override
+	public FuzzySystemRuleBase copy() {
+		
+		TskRuleBaseType rulebase=new TskRuleBaseType(this.name, this.activationMethod, this.andMethod, this.orMethod, this.ruleBaseSystemType);
+	    rulebase.setNetworkAddress(this.networkAddress);
+	    
+	  //setting terms
+	  		for(Rule t : getTskRules())
+	  			rulebase.addTskRule((TskFuzzyRuleType) t.copy());
+	  		
+	  	return rulebase;
+	
 	}
 
 }
