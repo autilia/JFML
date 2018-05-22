@@ -427,7 +427,7 @@ public class TsukamotoVariableType extends KnowledgeBaseVariable{
 
 	@Override
 	public String toString() {
-		String b = name + " - domain["+getDomainleft() + ", "+getDomainright()+"] - Combination:"+getCombination() + " - ";
+		String b = name + " - domain["+getDomainleft() + ", "+getDomainright()+"] - Combination:"+getCombination() + "; "+"Default value:"+getDefaultValue()  + " - ";
     	    	
     	b+= getType() + "\n";
     	
@@ -460,7 +460,7 @@ public class TsukamotoVariableType extends KnowledgeBaseVariable{
 		fv.setCombination(new String(getCombination()));
 		fv.setValue(getValue());
 		
-		//added by vitiello
+		//added by Autilia Vitiello
 		fv.setDefaultValue(new Float(getDefaultValue()));
 
 			

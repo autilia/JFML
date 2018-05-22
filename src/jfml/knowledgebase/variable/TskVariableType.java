@@ -362,7 +362,7 @@ public class TskVariableType extends KnowledgeBaseVariable {
 	public String toString() {
 		String b = name + " - ";
     	    	
-    	b+= getType() + "\n";
+    	b+= getType() +"-" +"Default value:"+getDefaultValue()  +"\n";
     	
     	for(TskTermType t : getTerms())
     		b += "\t" + t.toString()  + "\n";
@@ -423,7 +423,7 @@ public class TskVariableType extends KnowledgeBaseVariable {
 		fv.setCombination(new String(getCombination()));
 		fv.setValue(getValue());
 		
-		//added by vitiello
+		//added by Autilia Vitiello
 		fv.setDefaultValue(new Float(getDefaultValue()));
 	
 			

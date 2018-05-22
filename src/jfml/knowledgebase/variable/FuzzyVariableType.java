@@ -418,7 +418,7 @@ public class FuzzyVariableType extends FuzzyVariable{
     	String b = name + " - domain["+getDomainleft() + ", "+getDomainright()+"] - ";
     	
     	if(isOutput()){
-    		b += "Accumulation:"+getAccumulation()+ "; "+"Defuzzifier:"+getDefuzzifierName() + " - ";
+    		b += "Accumulation:"+getAccumulation()+ "; "+"Defuzzifier:"+getDefuzzifierName() + "; "+"Default value:"+getDefaultValue()  + " - ";
     	}
     	
     	b+= getType() + "\n";
@@ -640,7 +640,7 @@ public class FuzzyVariableType extends FuzzyVariable{
 		fv.setAccumulation(new String(getAccumulation()));
 		fv.setDefuzzifierName(new String(getDefuzzifierName()));
 		
-		//added by vitiello
+		//added by Autilia Vitiello
 		fv.setDefaultValue(new Float(getDefaultValue()));
 		
 		
