@@ -417,63 +417,78 @@ public class FuzzyRuleType extends Rule{
 
 	@Override
 	public String toString() {
-		String b = getName() +" - ("+getEvaluation()+") IF ";
-		
-		//ANTECEDENTS
-		List<ClauseType> clauses = getAntecedent().getClauses();
-		for(int i=0;i<clauses.size();i++){
-			ClauseType c= clauses.get(i);
-			
-			FuzzyTerm t=(FuzzyTerm) c.getTerm();
-			KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
-			
-			String modifier = c.getModifier();
-			if(modifier!=null)
-				modifier += " ";
-			else
-				modifier="";
-			
-			b += v.getName() +" IS "+ modifier + t.getName();
-			if(i<clauses.size()-1)
-				b += " "+getConnector().toUpperCase() + " ";
-		}
-		
-		//CONSEQUENTS
-		ConsequentClausesType then = getConsequent().getThen();
-		ConsequentClausesType _else = getConsequent().getElse();
-		if(then!=null){
-			b += " THEN ";
-			for(ClauseType c : then.getClause()){
-				FuzzyTerm t=(FuzzyTerm) c.getTerm();
-				KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
-	
-				String modifier = c.getModifier();
-				if(modifier!=null)
-					modifier += " ";
-				else
-					modifier="";
+		       //changed by autilia vitiello
+				String b = getName() +": ";
 				
-				b += v.getName() +" IS "+ modifier + t.getName() + ", ";
-			}
-			
-			if(_else!=null){
-				b += " ELSE ";
-				for(ClauseType c : _else.getClause()){
+				
+				//ANTECEDENTS
+				//changed by autilia vitiello
+				if(getAntecedent()!=null){
+					b += "IF ";
+				List<ClauseType> clauses = getAntecedent().getClauses();
+				for(int i=0;i<clauses.size();i++){
+					ClauseType c= clauses.get(i);
+					
 					FuzzyTerm t=(FuzzyTerm) c.getTerm();
 					KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
 					
 					String modifier = c.getModifier();
 					if(modifier!=null)
 						modifier += " ";
-					b += v.getName() +" IS "+ modifier + t.getName() + ", ";
+					else
+						modifier="";
+					
+					b += v.getName() +" IS "+ modifier + t.getName();
+					if(i<clauses.size()-1)
+						b += " "+getConnector().toUpperCase() + " ";
 				}
-			}
+				}
+				
+				//CONSEQUENTS
+				//changed by autilia vitiello
+						if(getConsequent()!=null){
+				ConsequentClausesType then = getConsequent().getThen();
+				ConsequentClausesType _else = getConsequent().getElse();
+				if(then!=null){
+					if(!then.getClause().isEmpty()){
+					b += " THEN ";
+					for(ClauseType c : then.getClause()){
+						FuzzyTerm t=(FuzzyTerm) c.getTerm();
+						KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
 			
-			b = b.substring(0, b.length()-2);
-			
-			b += " [weight="+getWeight()+"]";
-		}
-		return b;
+						String modifier = c.getModifier();
+						if(modifier!=null)
+							modifier += " ";
+						else
+							modifier="";
+						
+						b += v.getName() +" IS "+ modifier + t.getName() + ", ";
+					}
+					b = b.substring(0, b.length()-2);
+				}
+				}
+					
+					if(_else!=null){
+						if(!_else.getClause().isEmpty()){
+						b += " ELSE ";
+						for(ClauseType c : _else.getClause()){
+							FuzzyTerm t=(FuzzyTerm) c.getTerm();
+							KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
+							
+							String modifier = c.getModifier();
+							if(modifier!=null)
+								modifier += " ";
+							b += v.getName() +" IS "+ modifier + t.getName() + ", ";
+						}
+					
+				
+					b = b.substring(0, b.length()-2);
+					}
+					}
+				
+					b += " [weight="+getWeight()+"]";
+				}
+				return b;
 	}
 	
 	

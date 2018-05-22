@@ -411,49 +411,16 @@ public class TskFuzzyRuleType extends Rule{
 
 	@Override
 	public String toString() {
-		String b = getName() +" - ("+getEvaluation()+") IF ";
-		
-		//ANTECEDENTS
-		List<ClauseType> clauses = getAntecedent().getClauses();
-		for(int i=0;i<clauses.size();i++){
-			ClauseType c= clauses.get(i);
-			FuzzyTermType t=null;
-			FuzzyVariableType v=null;
-			if(c!=null && c.getTerm() instanceof FuzzyTermType)
-				t = (FuzzyTermType) c.getTerm();
-			if(c.getVariable() instanceof FuzzyVariableType)
-				v = (FuzzyVariableType) c.getVariable();
-			
-			String modifier = c.getModifier();
-			if(modifier!=null)
-				modifier += " ";
-			else
-				modifier="";
-			
-			b += v.getName() +" IS "+ modifier + t.getName();
-			if(i<clauses.size()-1)
-				b += " "+getConnector().toUpperCase() + " ";
-		}
-		
-		//CONSEQUENTS
-		TskConsequentClausesType then = getTskConsequent().getTskThen();
-		TskConsequentClausesType _else = getTskConsequent().getTskElse();
-		if(then!=null){
-			b += " THEN ";
-			for(TskClauseType c : then.getTskClause()){
-				TskTermType t=null;
-				TskVariableType v=null;
-				if(c!=null && c.getTerm() instanceof TskTermType)
-					t = (TskTermType) c.getTerm();
-				if(c.getVariable() instanceof TskVariableType)
-					v = (TskVariableType) c.getVariable();
+		//changed by autilia vitiello
+				String b = getName() +": ";
 				
-				b += v.getName() +" IS "+ t.getName() + " ";
-			}
-			
-			if(_else!=null){
-				b += " ELSE ";
-				for(TskClauseType c : _else.getTskClause()){
+				//ANTECEDENTS
+				//changed by autilia vitiello
+				if(getAntecedent()!=null){
+					b += "IF ";
+				List<ClauseType> clauses = getAntecedent().getClauses();
+				for(int i=0;i<clauses.size();i++){
+					ClauseType c= clauses.get(i);
 					FuzzyTermType t=null;
 					FuzzyVariableType v=null;
 					if(c!=null && c.getTerm() instanceof FuzzyTermType)
@@ -461,13 +428,59 @@ public class TskFuzzyRuleType extends Rule{
 					if(c.getVariable() instanceof FuzzyVariableType)
 						v = (FuzzyVariableType) c.getVariable();
 					
-					b += v.getName() +" IS "+ t.getName() + " ";
+					String modifier = c.getModifier();
+					if(modifier!=null)
+						modifier += " ";
+					else
+						modifier="";
+					
+					b += v.getName() +" IS "+ modifier + t.getName();
+					if(i<clauses.size()-1)
+						b += " "+getConnector().toUpperCase() + " ";
 				}
-			}	
-			
-			b += "[weight="+getWeight()+"]";
-		}
-		return b;
+				}
+				
+				//CONSEQUENTS
+				//changed by autilia vitiello
+				if(getTskConsequent()!=null){
+				TskConsequentClausesType then = getTskConsequent().getTskThen();
+				TskConsequentClausesType _else = getTskConsequent().getTskElse();
+				if(then!=null){
+					if(!then.getTskClause().isEmpty()){
+					b += " THEN ";
+					for(TskClauseType c : then.getTskClause()){
+						TskTermType t=null;
+						TskVariableType v=null;
+						if(c!=null && c.getTerm() instanceof TskTermType)
+							t = (TskTermType) c.getTerm();
+						if(c.getVariable() instanceof TskVariableType)
+							v = (TskVariableType) c.getVariable();
+						
+						b += v.getName() +" IS "+ t.getName() + " ";
+					}
+				}
+				}
+				//changed by autilia vitiello
+					if(_else!=null){
+						if(!_else.getTskClause().isEmpty()){
+						b += " ELSE ";
+						for(TskClauseType c : _else.getTskClause()){
+							TskTermType t=null;
+							TskVariableType v=null;
+							if(c!=null && c.getTerm() instanceof TskTermType)
+								t = (TskTermType) c.getTerm();
+							if(c.getVariable() instanceof TskVariableType)
+								v = (TskVariableType) c.getVariable();
+												
+							b += v.getName() +" IS "+ t.getName() + " ";
+						}
+					}	
+					}
+					
+					b += "[weight="+getWeight()+"]";
+				
+				}
+				return b;
 	}
 	
 	

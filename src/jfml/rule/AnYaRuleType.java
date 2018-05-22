@@ -301,46 +301,56 @@ public class AnYaRuleType extends Rule{
 
 	@Override
 	public String toString() {
-		String b = getName() +" - ("+getEvaluation()+") IF ";
-		
-		//ANTECEDENTS
-		AnYaAntecedentType ant = getAnYaAntecedent();
-		b += ant.toString();
-		
-		//CONSEQUENTS
-		ConsequentClausesType then = getConsequent().getThen();
-		ConsequentClausesType _else = getConsequent().getElse();
-		if(then!=null){
-			b += " THEN ";
-			for(ClauseType c : then.getClause()){
-				FuzzyTerm t=(FuzzyTerm) c.getTerm();
-				KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
-	
-				String modifier = c.getModifier();
-				if(modifier!=null)
-					modifier += " ";
-				else
-					modifier="";
+		//changed by autilia vitiello
+				String b = getName() +": ";
 				
-				b += v.getName() +" IS "+ modifier + t.getName() + " ";
-			}
-			
-			if(_else!=null){
-				b += " ELSE ";
-				for(ClauseType c : _else.getClause()){
-					FuzzyTerm t=(FuzzyTerm) c.getTerm();
-					KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
-					
-					String modifier = c.getModifier();
-					if(modifier!=null)
-						modifier += " ";
-					b += v.getName() +" IS "+ modifier + t.getName() + " ";
+				//ANTECEDENTS
+				//changed by autilia vitiello
+				if(getAnYaAntecedent()!=null){
+					b += "IF ";
+				AnYaAntecedentType ant = getAnYaAntecedent();
+				b += ant.toString();
 				}
-			}	
+				//CONSEQUENTS
+				if(getConsequent()!=null){
+				ConsequentClausesType then = getConsequent().getThen();
+				ConsequentClausesType _else = getConsequent().getElse();
+				if(then!=null){
+					if(!then.getClause().isEmpty()){
+					b += " THEN ";
+					for(ClauseType c : then.getClause()){
+						FuzzyTerm t=(FuzzyTerm) c.getTerm();
+						KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
 			
-			b += "[weight="+getWeight()+"]";
-		}
-		return b;
+						String modifier = c.getModifier();
+						if(modifier!=null)
+							modifier += " ";
+						else
+							modifier="";
+						
+						b += v.getName() +" IS "+ modifier + t.getName() + " ";
+					}
+					}
+				}
+					
+					if(_else!=null){
+						if(!_else.getClause().isEmpty()){
+						b += " ELSE ";
+						for(ClauseType c : _else.getClause()){
+							FuzzyTerm t=(FuzzyTerm) c.getTerm();
+							KnowledgeBaseVariable v=(KnowledgeBaseVariable) c.getVariable();
+							
+							String modifier = c.getModifier();
+							if(modifier!=null)
+								modifier += " ";
+							b += v.getName() +" IS "+ modifier + t.getName() + " ";
+						}
+					}	
+					}
+					b += "[weight="+getWeight()+"]";
+				
+				}
+				return b;
 	}
 
 	/**
