@@ -639,6 +639,11 @@ public class FuzzyVariableType extends FuzzyVariable{
 		fv.setType(new String(getType()));
 		fv.setAccumulation(new String(getAccumulation()));
 		fv.setDefuzzifierName(new String(getDefuzzifierName()));
+		
+		//added by vitiello
+		fv.setDefaultValue(new Float(getDefaultValue()));
+		
+		
 		fv.setNetworkAddress(new String(getNetworkAddress()));
 		fv.setScale(new String(getScale()));
 		fv.setValue(getValue());

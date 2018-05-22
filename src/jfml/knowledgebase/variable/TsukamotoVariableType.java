@@ -459,6 +459,10 @@ public class TsukamotoVariableType extends KnowledgeBaseVariable{
 		fv.setScale(new String(getScale()));
 		fv.setCombination(new String(getCombination()));
 		fv.setValue(getValue());
+		
+		//added by vitiello
+		fv.setDefaultValue(new Float(getDefaultValue()));
+
 			
 		//setting terms
 		for(TsukamotoTermType t : getTerms())
