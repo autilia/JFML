@@ -35,6 +35,7 @@ import jfml.knowledgebase.variable.FuzzyVariableType;
 import jfml.knowledgebase.variable.KnowledgeBaseVariable;
 import jfml.term.FuzzyTerm;
 import jfml.term.FuzzyTermType;
+import jfml.term.Term;
 
 
 /**
@@ -407,4 +408,18 @@ public class ClauseType {
 		
 		return (v.getName() +" IS "+ modifier + t.getName());
 	}
+	
+	
+	/**
+	 * @author Autilia Vitiello
+	 * 
+	 * @return
+	 */
+	public ClauseType copy(){
+			ClauseType claus=new ClauseType(((KnowledgeBaseVariable)this.variable).copy(), ((Term)this.term).copy());
+			if(this.modifier!=null)
+				claus.setModifier(new String(modifier));
+			return claus;
+
+		}
 }
