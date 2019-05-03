@@ -70,8 +70,8 @@ public class MamdaniRuleBaseType extends RuleBaseType {
 	    rulebase.setNetworkAddress(this.networkAddress);
 	    
 	  //setting terms
-	  		for(Rule t : getRules())
-	  			rulebase.addRule((FuzzyRuleType) t.copy());
+	  for(Rule t : getRules())
+	  	rulebase.addRule((FuzzyRuleType) t.copy());
 	  		
 	  	return rulebase;
 	
