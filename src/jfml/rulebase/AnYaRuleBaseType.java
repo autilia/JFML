@@ -329,8 +329,8 @@ public class AnYaRuleBaseType extends FuzzySystemRuleBase {
 	    rulebase.setNetworkAddress(this.networkAddress);
 	    
 	  //setting terms
-	  		for(Rule t : getAnYaRules())
-	  			rulebase.addAnYaRule((AnYaRuleType) t.copy());
+	  	for(Rule t : getAnYaRules())
+	  		rulebase.addAnYaRule((AnYaRuleType) t.copy());
 	  		
 	  	return rulebase;
 	
